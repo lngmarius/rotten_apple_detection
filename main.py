@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from colorthief import ColorThief
 
 
-path =r'D:\python\mar_stricat\poze\dataset\test\R\5.png'
+path =r'path'
 img = cv.imread(path)
 
 img = cv.medianBlur(img,7)
@@ -17,7 +17,7 @@ Z = np.float32(Z)
 criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 10, 1.0)
 K = 3
 ret,label,center=cv.kmeans(Z,K,None,criteria,10,cv.KMEANS_RANDOM_CENTERS)
-# Now convert back into uint8, and make original image
+# convert back into uint8, and make original image
 center = np.uint8(center)
 print(center)
 res = center[label.flatten()]
@@ -25,8 +25,8 @@ res2 = res.reshape((img.shape))
 cv.imshow('KMeans Clustering',res2)
 
 
-#cv.imwrite(r'D:\python\mar_stricat\poze\dataset\test\D\1.png', res2)
-#color_thief = ColorThief(r'D:\python\mar_stricat\poze\dataset\test\D\1.png')
+#cv.imwrite(r'path', res2)
+#color_thief = ColorThief(r'path')
 #dominant_color = color_thief.get_color(quality=1)
 #palette = color_thief.get_palette(color_count=6)
 #print(dominant_color)
@@ -46,31 +46,31 @@ cv.waitKey(1000)
 
 #with np.printoptions(threshold=np.inf):
 #    print(erosion)
-#printeaza toata matricea
 
-#toti pixelii de culoare
+
+
 number_of_white_pix = np.sum(erosion == 255)
 number_of_black_pix = np.sum(erosion == 0)
-numar_de_pixeli=number_of_white_pix+number_of_black_pix
+number_of_pixels=number_of_white_pix+number_of_black_pix
 
-print('Numar de pixeli:', numar_de_pixeli)
+print('Number of pixels:', number_of_pixels)
 print('Number of white pixels:', number_of_white_pix)
 print('Number of black pixels:', number_of_black_pix)
 
-la_suta_alb=number_of_white_pix/numar_de_pixeli*100
-la_suta_negru=number_of_black_pix/numar_de_pixeli*100
+procent_white=number_of_white_pix/number_of_pixels*100
+procent_black=number_of_black_pix/number_of_pixels*100
 
-print('Sunt ',la_suta_alb,'% pixeli albi')
-print('Sunt ',la_suta_negru,'% pixeli negrii')
+print('Sunt ',procent_white,'% pixeli albi')
+print('Sunt ',procent_black,'% pixeli negrii')
 
 
-if(la_suta_negru>5 and la_suta_negru!=0):
-    img = cv.putText(img, 'Marul este stricat!', (10, 30), cv.FONT_HERSHEY_SIMPLEX,
+if(procent_black > 5 and procent_black != 0):
+    img = cv.putText(img, 'Rotten!', (10, 30), cv.FONT_HERSHEY_SIMPLEX,
                         0.7, (255, 0, 0), 1, cv.LINE_AA)
 else:
-    img = cv.putText(img, 'Marul este sanatos!', (10, 30), cv.FONT_HERSHEY_SIMPLEX,
+    img = cv.putText(img, 'Healthy!', (10, 30), cv.FONT_HERSHEY_SIMPLEX,
                      0.7, (255, 0, 0), 1, cv.LINE_AA)
 
-cv.imshow('Rezultat', img)
+cv.imshow('Output', img)
 
 cv.waitKey(0)
