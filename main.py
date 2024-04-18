@@ -3,7 +3,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 from colorthief import ColorThief
 
-#remind me to never do this again thanks
 
 path =r'D:\python\mar_stricat\poze\dataset\test\R\5.png'
 img = cv.imread(path)
