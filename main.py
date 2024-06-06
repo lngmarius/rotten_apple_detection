@@ -60,8 +60,8 @@ print('Number of black pixels:', number_of_black_pix)
 procent_white=number_of_white_pix/number_of_pixels*100
 procent_black=number_of_black_pix/number_of_pixels*100
 
-print('Sunt ',procent_white,'% pixeli albi')
-print('Sunt ',procent_black,'% pixeli negrii')
+#print(procent_white,'% of whiel pixels')
+#print(procent_black,'% of black pixels')
 
 
 if(procent_black > 5 and procent_black != 0):
